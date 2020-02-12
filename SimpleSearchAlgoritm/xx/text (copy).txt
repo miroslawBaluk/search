@@ -1,0 +1,54 @@
+1
+Shares
+FacebookTwitterGoogle+LinkedInBufferEmailSumoMe
+Full Text Search: How it Works
+Full Text Search
+What is full text search?
+
+Full text search is a technique, which allows conducting search through documents and databases not only by a title, but also by content. Unlike metadata search methods, which analyze only the description of the document, full text search goes through all the words in the document, showing information that is more relevant or the exact information that was requested.
+The technique gained its popularity in 1990’s. At that time the process of scanning was very long and time-consuming, so it was optimized.
+Full text search engines are used widely. For example, Google allows users to find the neeeded query on web pages particularly with the help of this technique. If you have your own website with a lot of data, applying full text search might be very useful because it eases interaction for a user.
+Why do we need it?
+
+Full text search may be useful when one needs to search for:
+
+    a name of the person in a list or a database;
+    a word or a phrase in a document;
+    a web page on the internet;
+    products in an online store, etc.
+    a regular expression.
+
+Full text search results can be used as an input for a replacement of phrases and in the process of related word forms search, etc.
+How to make it?
+
+There are different ways of realization of full text search. We can opt for any, depending on the case. To make it easier, let’s divide methods into two groups:
+
+1. String searching algorithms. To find a substring matching of a pattern (needed expression) in a text, we’ll go through the document(s) until the match is found or the text is finished. In fact, most of these methods are rather slow.
+
+String searching algorithms:
+
+    simple text searching;
+    Rabin-Karp algorithm;
+    Knuth-Morris-Pratt algorithm;
+    Boyer-Moore (-Horspool) algorithm;
+    approximate matching;
+    a regular expression.
+
+Simple text searching is really simple to implement. This algorithm looks for matches letter by letter. That’s why it takes a lot of time.
+
+Rabin-Karp algorithm can use multiple patterns. It conducts a search, looking for a string of length m (pattern) in a text of length n. But first, for each substring in the text, there must be created a special mark, a fingerprint of the same length as the pattern. Only if fingerprints match, the algorithm starts to compare letters.
+To create a fingerprint, the algorithm uses a hash function to map arbitrary size data to the fixed size. Therefore, implementation of a hash function and comparing fingerprints allows shortening its average best running time.
+This algorithm is good for checking for antiplagiarism. It is able to run through many files comparing patterns of paperwork to files in a database.
+
+Knuth-Morris-Pratt algorithm
+This algorithm uses information about the pattern and the text to speed up the search, by shifting the position of comparison. It’s based on the partial match.
+For example, we’re looking for “walrus” in the tongue twister “Wayne went to Wales to watch walruses”. We choose the first letter of “walrus” and start to compare. First, the algorithm checks “Wayne”, but reaching “y” it understands it’s not a match. After this, it moves on to start looking for matches. Since it knows that second and third characters are not “w” it can skip them and start searching with the next one. Each time when the algorithm finds mismatch the pattern moves forward according to the previously mentioned principle until the match is found or the text is finished.
+“Wayne went to Wales to watch walruses”. All calculations are stored in shift tables.
+
+Boyer-Moore algorithm is similar to Knuth-Morris-Pratt algorithm but more complex. It’s known as the first algorithm that didn’t compare each character in the text. It works in reverse, conducting a search from the right to the left of the pattern. Furthermore, it has extensions like heuristics: the algorithm that is able to decide based on the information at each branching step which branch to follow. They are known as shift rules: the good suffix rule and the bad symbol rule. They allow shifting over the position of a character if we know this character is not in the pattern. For this algorithm performs beforehand calculations in the pattern, but not the text being searched (the string).
+
+This concept is called filtering. And the part of the text, that becomes visible because of the shifting pattern compared to a window, through which the algorithm obtains needed information to conduct a search. These rules dictate how many symbols will be skipped. For this during processing of the pattern algorithm generates lookup tables.
+
+Let’s take a closer look at shift rules. The bad character rule allows skipping one or more mismatched characters. For example, the pattern is “Mississippi”. How the bad character rule works:
+It checks for the match from the “tail”. If not found ­, then shift to the matching character in the pattern, to keep searching for matches.
+
